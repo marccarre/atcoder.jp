@@ -1,7 +1,7 @@
 import inspect
-import pytest
 from io import StringIO
 from os.path import abspath, dirname, join
+import pytest
 from contests.practice.a import main
 
 
