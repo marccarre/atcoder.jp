@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "==5.4.3"
+pylint = "==2.5.3"
 
 [packages]
 
