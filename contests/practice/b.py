@@ -1,3 +1,4 @@
+from functools import lru_cache
 import sys
 
 
@@ -40,6 +41,7 @@ def solution(n, _):
             merged.extend(right[r:])
         return merged
 
+    @lru_cache()
     def less(c1, c2):
         print('? %s %s' % (c1, c2), flush=True)
         resp = input().strip()
