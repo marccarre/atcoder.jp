@@ -5,6 +5,7 @@ PROJECT_DIR="$(dirname "${DIR}")"
 
 function main() {
 	pylint "${PROJECT_DIR}/contests" "${PROJECT_DIR}/tests"
+	flake8 "${PROJECT_DIR}"
 }
 
 main
