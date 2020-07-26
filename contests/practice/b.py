@@ -1,3 +1,4 @@
+from collections import defaultdict, deque
 from functools import lru_cache
 import sys
 
@@ -16,6 +17,7 @@ def inputs():
 def solution(n, _):
     chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     array = [chars[i] for i in range(n)]
+    ordering = defaultdict(set)
 
     def merge_sort(array):
         if len(array) <= 1:
@@ -43,6 +45,35 @@ def solution(n, _):
 
     @lru_cache()
     def less(c1, c2):
+        # Use BFS to check if ordering can be inferred:
+        if c2 in ordering[c1] or run_bfs(c1, c2):
+            ordering[c1].add(c2)
+            return True
+        if c1 in ordering[c2] or run_bfs(c2, c1):
+            ordering[c2].add(c1)
+            return True
+        # Ask for ordering:
+        if check_if_less(c1, c2):
+            ordering[c1].add(c2)
+            return True
+        else:
+            ordering[c2].add(c1)
+            return False
+
+    def run_bfs(c1, c2):
+        q = deque([c1])
+        visited = set()
+        while q:
+            u = q.popleft()
+            visited.add(u)
+            if u == c2:
+                return True
+            for v in ordering[u]:
+                if v not in visited:
+                    q.append(v)
+        return False
+
+    def check_if_less(c1, c2):
         print('? %s %s' % (c1, c2), flush=True)
         resp = input().strip()
         if resp == '<':
