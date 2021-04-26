@@ -8,4 +8,7 @@ install:
   - pip install pipenv
   - pipenv install --dev
 script:
-  - pytest
+  - pytest --cov=contests tests
+after_success:
+  - pip install coveralls
+  - coveralls
