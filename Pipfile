@@ -4,9 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pytest = "==6.2.3"
-pylint = "==2.8.2"
 flake8 = "==3.9.1"
+pylint = "==2.8.2"
+pytest = "==6.2.3"
 
 [packages]
 
